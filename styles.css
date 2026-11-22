@@ -322,7 +322,14 @@ main:focus, section:focus { outline: none; }
   display: inline-flex; align-items: center; gap: clamp(1rem, 2.5vw, 2rem); padding-right: clamp(1rem, 2.5vw, 2rem);
   font-size: clamp(1.4rem, 3.6vw, 3.2rem); font-weight: 800; letter-spacing: -0.03em; text-transform: uppercase; white-space: nowrap;
 }
-.flow__track span::after { content: ""; width: 0.5em; aspect-ratio: 1; border-radius: 50%; background: var(--accent); }
+.flow__img {
+  flex: none; display: block;
+  width: 2.3em; height: 1.05em; object-fit: cover;
+  border-radius: 99px;
+  box-shadow: 0 0 0 1px #ffffff26;
+}
+.flow__item { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+@media (hover: hover) { .flow__item { cursor: default; } }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
 /* ---------- Work: horizontal gallery ---------- */
@@ -486,6 +493,98 @@ main:focus, section:focus { outline: none; }
 .footer { padding-block: 1.75rem; background: var(--black); color: var(--white); font-size: 0.82rem; }
 .footer__inner { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
 .footer p { color: var(--grey-2); }
+
+/* ---------- Process steps: "passage" deck (turned on by site.js; off with reduced motion) ----------
+   The Process card is in front. The five step cards sit behind it, same size, hidden.
+   With scroll progress --p each card slides down out from behind the one in front,
+   staggered, a bit smaller with depth, until a strip with its number, title and text
+   shows below the card in front. --strip is how much of each card ends up visible. */
+.passage__stack { display: none; }
+.passage.is-active {
+  --card-h: 9rem; --strip: 6.4rem;
+  height: 230svh; margin-top: 2rem;
+}
+.passage.is-active .passage__sticky {
+  position: sticky; top: 4.5rem;
+  height: calc(100svh - 4.5rem);
+  display: flex; align-items: flex-start; padding-top: 1rem;
+}
+.passage.is-active .passage__stage {
+  position: relative; width: 100%; max-width: 46rem; margin-inline: auto;
+  height: calc(var(--card-h) + 5 * var(--strip)); /* deck fully spread */
+}
+
+/* front card */
+.passage.is-active .passage__stack {
+  display: block; position: absolute; z-index: 10; inset: 0 0 auto;
+  height: var(--card-h); pointer-events: none;
+}
+.passage__panel {
+  position: absolute; inset: 0;
+  display: grid; place-items: center; overflow: hidden;
+  border-radius: 1rem; background: #161616;
+  box-shadow: 0 1.2rem 2.4rem #00000080;
+}
+.passage__panel::before {
+  content: ""; position: absolute; inset: 0;
+  background: url("assets/flow-sketch.webp") center / cover;
+  filter: grayscale(1); opacity: 0.15;
+}
+.passage__panel span {
+  position: relative; color: #fafafa;
+  font-size: clamp(2.4rem, 11vw, 4.5rem); font-weight: 500; letter-spacing: -0.04em; text-transform: uppercase;
+}
+
+/* the step cards behind it */
+.passage.is-active .steps { display: block; position: absolute; inset: 0; z-index: 1; }
+.passage.is-active .steps li:nth-child(1) { --k: 0; --bg: #222; }
+.passage.is-active .steps li:nth-child(2) { --k: 1; --bg: #292929; }
+.passage.is-active .steps li:nth-child(3) { --k: 2; --bg: #303030; }
+.passage.is-active .steps li:nth-child(4) { --k: 3; --bg: #373737; }
+.passage.is-active .steps li:nth-child(5) { --k: 4; --bg: #3e3e3e; }
+.passage.is-active .steps li {
+  --c: clamp(0, calc((var(--p, 0) - 0.08 - var(--k) * 0.14) / 0.3), 1);
+  position: absolute; inset: 0 0 auto; height: var(--card-h);
+  z-index: calc(5 - var(--k));
+  display: flex; flex-direction: column; justify-content: flex-end; /* text lives in the strip that shows */
+  padding: 0.9rem 1.1rem; border: 0; border-radius: 1rem;
+  background: var(--bg);
+  box-shadow: 0 1rem 2rem #00000073, inset 0 1px 0 #ffffff14;
+  opacity: 1;
+  transform-origin: 50% 100%;
+  transform: translateY(calc((var(--k) + 1) * var(--strip) * var(--c)))
+             scale(calc(1 - (var(--k) + 1) * var(--c) * 0.025));
+  transition: none; /* the scroll drives it */
+}
+.passage.is-active .steps li span { font-size: 0.75rem; }
+.passage.is-active .steps h3 { margin-block: 0.15rem 0.25rem; font-size: 1.05rem; }
+.passage.is-active .steps p { font-size: 0.85rem; line-height: 1.4; }
+
+/* wider screens: text fits on one line, so the strips can be shorter */
+@media (min-width: 48.01rem) {
+  .passage.is-active { --card-h: 11rem; --strip: 4.6rem; }
+  .passage.is-active .steps li {
+    flex-direction: row; flex-wrap: wrap; justify-content: flex-start;
+    align-items: baseline; align-content: flex-end; column-gap: 0.8rem;
+    padding-inline: 1.6rem;
+  }
+  .passage.is-active .steps p { flex-basis: 100%; font-size: 0.95rem; }
+  .passage.is-active .steps h3 { font-size: 1.2rem; }
+}
+/* short phones */
+@media (max-width: 48rem) and (max-height: 740px) {
+  .passage.is-active { --card-h: 7rem; --strip: 5.7rem; }
+  .passage.is-active .steps li { padding: 0.7rem 0.95rem; }
+  .passage.is-active .steps p { font-size: 0.8rem; line-height: 1.35; }
+}
+
+/* Orbit: on phones the circles grow with the scroll (site.js sets --g and --c) */
+.orbit.is-scrubbed .orbit__line { transition: none; transform: scaleX(var(--g, 0)); }
+.orbit.is-scrubbed .orbit__circle {
+  transition: none;
+  opacity: var(--c, 0);
+  transform: scale(calc(0.3 + 0.7 * var(--c, 0)));
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width: 48rem) {

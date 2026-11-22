@@ -99,6 +99,7 @@ const ES = {
   "work.next.title": "Podría ser el siguiente",
   "process.eyebrow": "Cómo trabajo",
   "process.title": "De la idea al lanzamiento",
+  "process.word": "Proceso",
   "step.1": "Descubrir",
   "step.2": "Definir",
   "step.3": "Diseñar",
@@ -162,30 +163,59 @@ function splitQuote() {
 function fillMarquees() {
   document.querySelectorAll(".flow__item").forEach((item) => {
     const label = item.querySelector(".flow__label").textContent;
+    const img = item.dataset.img; // each service has its own picture
     item.querySelector(".flow__track").innerHTML =
-      Array.from({ length: 12 }, () => `<span>${label}</span>`).join("");
+      // label, then a small image pill before the next repetition
+      Array.from({ length: 12 }, () =>
+        `<span>${label}${img ? `<img class="flow__img" src="${img}" alt="" decoding="async">` : ""}</span>`
+      ).join("");
   });
 }
 
-document.querySelectorAll(".flow__item").forEach((item) => {
-  const marquee = item.querySelector(".flow__marquee");
+// The black strip slides in from the edge the pointer/finger came from
+const FLOW_EASE = "transform 600ms cubic-bezier(0.22, 1, 0.36, 1)";
+const flowEdge = (item, y) => {
+  const r = item.getBoundingClientRect();
+  return y < r.top + r.height / 2 ? "-101%" : "101%";
+};
+function flowOpen(item, y) {
+  const m = item.querySelector(".flow__marquee");
+  m.style.transition = "none";
+  m.style.transform = `translateY(${flowEdge(item, y)})`;
+  m.offsetHeight; // reflow so the next transition starts from the edge
+  m.style.transition = FLOW_EASE;
+  m.style.transform = "translateY(0)";
+  item.classList.add("is-open");
+}
+function flowClose(item, y) {
+  const m = item.querySelector(".flow__marquee");
+  m.style.transition = FLOW_EASE;
+  m.style.transform = `translateY(${y == null ? "101%" : flowEdge(item, y)})`;
+  item.classList.remove("is-open");
+  clearTimeout(item._flowTimer);
+}
 
-  if (reduceMotion || !window.matchMedia("(hover: hover)").matches) return;
-  const edge = (e) => {
-    const r = item.getBoundingClientRect();
-    return e.clientY < r.top + r.height / 2 ? "-101%" : "101%";
-  };
-  item.addEventListener("mouseenter", (e) => {
-    marquee.style.transition = "none";
-    marquee.style.transform = `translateY(${edge(e)})`;
-    marquee.offsetHeight; // reflow so the next transition starts from the edge
-    marquee.style.transition = "transform 600ms cubic-bezier(0.22, 1, 0.36, 1)";
-    marquee.style.transform = "translateY(0)";
-  });
-  item.addEventListener("mouseleave", (e) => {
-    marquee.style.transform = `translateY(${edge(e)})`;
-  });
-});
+if (!reduceMotion) {
+  const flowItems = [...document.querySelectorAll(".flow__item")];
+  if (window.matchMedia("(hover: hover)").matches) {
+    // Desktop: hover
+    flowItems.forEach((item) => {
+      item.addEventListener("mouseenter", (e) => flowOpen(item, e.clientY));
+      item.addEventListener("mouseleave", (e) => flowClose(item, e.clientY));
+    });
+  } else {
+    // Phone / tablet: a tap opens the strip, it closes by itself after a moment,
+    // tapping it again closes it, and opening one closes the others
+    flowItems.forEach((item) => {
+      item.addEventListener("click", (e) => {
+        if (item.classList.contains("is-open")) { flowClose(item, e.clientY); return; }
+        flowItems.forEach((other) => { if (other !== item && other.classList.contains("is-open")) flowClose(other); });
+        flowOpen(item, e.clientY);
+        item._flowTimer = setTimeout(() => flowClose(item), 2800);
+      });
+    });
+  }
+}
 
 /* ---------- Work: project videos play only while on screen ---------- */
 (function cardVideos() {
@@ -280,6 +310,39 @@ viewport.addEventListener("scroll", () => {
   document.documentElement.addEventListener("pointerleave", () => { tx = 0; ty = 0; start(); });
 })();
 
+/* ---------- Process: growing orbit (phones) + "passage" deck of step cards (all sizes) ---------- */
+const phone = window.matchMedia("(max-width: 48rem)");
+const orbit = document.querySelector(".orbit");
+const orbitCircles = orbit ? [...orbit.querySelectorAll(".orbit__circle")] : [];
+const passage = document.querySelector("[data-passage]");
+const passageStage = passage?.querySelector(".passage__stage");
+let passageOn = false;
+
+function setupProcess() {
+  orbit?.classList.toggle("is-scrubbed", phone.matches && !reduceMotion);
+  if (!passage) return;
+  passageOn = !reduceMotion; // reduced motion: the plain list, no scroll runway
+  passage.classList.toggle("is-active", passageOn);
+  if (!passageOn) passageStage.style.removeProperty("--p");
+}
+
+function updateProcess(vh) {
+  if (orbit?.classList.contains("is-scrubbed")) {
+    const top = orbit.getBoundingClientRect().top;
+    const g = clamp((vh * 0.95 - top) / (vh * 0.55));
+    orbit.style.setProperty("--g", g.toFixed(3));
+    orbitCircles.forEach((c, i) => c.style.setProperty("--c", clamp(g * 1.6 - i * 0.15).toFixed(3)));
+  }
+  if (!passageOn) return;
+  // p = progress through the pinned runway of this section (0 at pin start, 1 at its end)
+  const rect = passage.getBoundingClientRect();
+  const stickyTop = parseFloat(getComputedStyle(passage.firstElementChild).top) || 0;
+  const runway = rect.height - (vh - stickyTop);
+  passageStage.style.setProperty("--p", clamp((stickyTop - rect.top) / runway).toFixed(4));
+}
+phone.addEventListener?.("change", () => { setupProcess(); onScroll(); });
+setupProcess();
+
 /* ---------- Scroll-driven updates ---------- */
 const header = document.querySelector(".header");
 const hero = document.querySelector(".hero");
@@ -310,6 +373,8 @@ function onScroll() {
     const lit = p * words.length;
     words.forEach((w, i) => { w.style.opacity = i < lit ? 1 : 0.15; });
   }
+
+  updateProcess(vh);
 
   // Services slides over the pinned quote: the quote shrinks and fades as it gets covered
   const covered = clamp(1 - services.getBoundingClientRect().top / vh);

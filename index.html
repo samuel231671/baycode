@@ -122,11 +122,11 @@
         <p data-i18n="services.text">A one-person studio that moves from research to launch. Strategy, interface and code under the same roof.</p>
       </div>
       <ul class="flow" role="list">
-        <li class="flow__item"><span class="flow__label" data-i18n="svc.1">UX/UI Design</span><div class="flow__marquee" aria-hidden="true"><div class="flow__track"></div></div></li>
-        <li class="flow__item"><span class="flow__label" data-i18n="svc.2">Website Design</span><div class="flow__marquee" aria-hidden="true"><div class="flow__track"></div></div></li>
-        <li class="flow__item"><span class="flow__label" data-i18n="svc.3">Web Applications</span><div class="flow__marquee" aria-hidden="true"><div class="flow__track"></div></div></li>
-        <li class="flow__item"><span class="flow__label" data-i18n="svc.4">Brand Identity</span><div class="flow__marquee" aria-hidden="true"><div class="flow__track"></div></div></li>
-        <li class="flow__item"><span class="flow__label" data-i18n="svc.5">Front-end Development</span><div class="flow__marquee" aria-hidden="true"><div class="flow__track"></div></div></li>
+        <li class="flow__item" data-img="assets/flow-sketch.webp"><span class="flow__label" data-i18n="svc.1">UX/UI Design</span><div class="flow__marquee" aria-hidden="true"><div class="flow__track"></div></div></li>
+        <li class="flow__item" data-img="assets/flow-website.webp"><span class="flow__label" data-i18n="svc.2">Website Design</span><div class="flow__marquee" aria-hidden="true"><div class="flow__track"></div></div></li>
+        <li class="flow__item" data-img="assets/flow-webapp.webp"><span class="flow__label" data-i18n="svc.3">Web Applications</span><div class="flow__marquee" aria-hidden="true"><div class="flow__track"></div></div></li>
+        <li class="flow__item" data-img="assets/flow-brand.webp"><span class="flow__label" data-i18n="svc.4">Brand Identity</span><div class="flow__marquee" aria-hidden="true"><div class="flow__track"></div></div></li>
+        <li class="flow__item" data-img="assets/flow-frontend.webp"><span class="flow__label" data-i18n="svc.5">Front-end Development</span><div class="flow__marquee" aria-hidden="true"><div class="flow__track"></div></div></li>
       </ul>
     </section>
 
@@ -196,13 +196,23 @@
           <span class="orbit__circle" style="--i:3;--s:27%" data-i18n="step.4">Develop</span>
           <span class="orbit__circle" style="--i:4;--s:32%" data-i18n="step.5">Launch</span>
         </div>
-        <ol class="steps" role="list">
+        <!-- "Passage": the step cards come out from behind the Process card as you scroll -->
+        <div class="passage" data-passage>
+          <div class="passage__sticky">
+            <div class="passage__stage">
+              <div class="passage__stack" aria-hidden="true">
+              <div class="passage__panel" style="--i:0"><span data-i18n="process.word">Process</span></div>
+              </div>
+              <ol class="steps" role="list">
           <li data-reveal><span>01</span><h3 data-i18n="step.1">Discover</h3><p data-i18n="step.1.text">Goals, audience and competitors. We agree on what success looks like.</p></li>
           <li data-reveal><span>02</span><h3 data-i18n="step.2">Define</h3><p data-i18n="step.2.text">Sitemap, user flows and content structure before any pixel.</p></li>
           <li data-reveal><span>03</span><h3 data-i18n="step.3">Design</h3><p data-i18n="step.3.text">Wireframes, visual direction and a clickable prototype.</p></li>
           <li data-reveal><span>04</span><h3 data-i18n="step.4">Develop</h3><p data-i18n="step.4.text">Fast, responsive code that matches the design exactly.</p></li>
           <li data-reveal><span>05</span><h3 data-i18n="step.5">Launch</h3><p data-i18n="step.5.text">Testing, SEO basics, go-live and support after launch.</p></li>
         </ol>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
