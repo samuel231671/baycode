@@ -1,0 +1,13 @@
+# Publish only the live site. Everything else (old/, .claude/, unused images) stays local.
+/*
+!/index.html
+!/styles.css
+!/site.js
+!/assets
+/assets/*
+!/assets/favicon.png
+!/assets/hero-sunset.webp
+!/assets/jr-embalajes.mp4
+!/assets/jr-embalajes-poster.jpg
+!/assets/haki-tracker.mp4
+!/assets/haki-tracker-poster.jpg

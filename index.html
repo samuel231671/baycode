@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="description" content="Baycode is a freelance UX/UI designer in Costa Rica, designing websites, web apps and brand identities for startups and businesses.">
+  <title>Baycode — UX/UI Designer in Costa Rica | Web &amp; App Design</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&amp;family=Instrument+Serif:ital@0;1&amp;display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    document.documentElement.classList.replace("no-js", "js");
+    setTimeout(() => document.documentElement.classList.add("is-loaded"), 4000);
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="site.js" defer></script>
+</head>
+<body id="top">
+  <div class="loader" aria-hidden="true">
+    <span class="loader__word">baycode<span>.</span></span>
+    <span class="loader__count">0</span>
+  </div>
+
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+
+  <header class="header">
+    <div class="frame header__inner">
+      <a class="wordmark" href="#top" aria-label="Baycode home">baycode<span>.</span></a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#about" data-i18n="nav.about">About me</a>
+        <a href="#services" data-i18n="nav.services">Services</a>
+        <a href="#work" data-i18n="nav.work">Work</a>
+        <a href="#process" data-i18n="nav.process">Process</a>
+      </nav>
+      <button class="lang" type="button" data-lang-toggle aria-label="Ver en español">
+        <span data-lang="en">EN</span><i aria-hidden="true">/</i><span data-lang="es">ES</span>
+      </button>
+      <a class="pill pill--header" href="#contact"><span data-i18n="cta.talk">Let's talk</span></a>
+      <details class="mobile-menu">
+        <summary><span data-i18n="menu">Menu</span> <span class="menu-icon" aria-hidden="true"></span></summary>
+        <nav aria-label="Mobile navigation">
+          <a href="#about" data-i18n="nav.about">About me</a>
+          <a href="#services" data-i18n="nav.services">Services</a>
+          <a href="#work" data-i18n="nav.work">Work</a>
+          <a href="#process" data-i18n="nav.process">Process</a>
+          <a href="#contact" data-i18n="cta.talk">Let's talk</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="hero__image" src="assets/hero-sunset.webp" alt="" width="2400" height="1600" fetchpriority="high">
+      <div class="hero__light" aria-hidden="true">
+        <div class="hero__light-x">
+          <div class="hero__light-y">
+            <span class="hero__shade"></span>
+            <span class="hero__glow"></span>
+          </div>
+        </div>
+      </div>
+      <div class="frame hero__content">
+        <p class="pill pill--tag" data-reveal data-i18n="hero.tag">Creative UX/UI Designer</p>
+        <h1 id="hero-title" class="hero__title">
+          <span class="line"><span data-i18n="hero.l1">Digital by design</span></span>
+          <span class="line"><span data-i18n="hero.l2">Human by</span></span>
+          <span class="line"><span data-i18n="hero.l3">nature</span></span>
+        </h1>
+        <p class="hero__lead" data-reveal data-i18n="hero.lead">Websites, web apps and brand identities that combine clean UI, strong UX strategy and conversion-focused thinking.</p>
+      </div>
+      <div class="frame hero__foot">
+        <a class="scroll-cue" href="#about"><span class="scroll-cue__dot" aria-hidden="true"></span> <span data-i18n="hero.scroll">Scroll to explore</span></a>
+        <p class="hero__location"><span aria-hidden="true"></span> <span data-i18n="based">Based in Costa Rica</span></p>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about section" id="about" aria-labelledby="about-title" tabindex="-1">
+      <div class="frame about__layout">
+        <div class="about__copy" data-reveal>
+          <p class="eyebrow" data-i18n="nav.about">About me</p>
+          <h2 id="about-title"><span data-i18n="about.title">Hi! I'm a UX/UI Designer</span> <small data-i18n="based">Based in Costa Rica</small></h2>
+          <p data-i18n="about.text">I specialize in website design, web applications, brand identity systems and user-centered digital experiences. I mix UX strategy, interface design and front-end development, so what we design is exactly what ships.</p>
+        </div>
+        <div class="badge" data-reveal aria-hidden="true">
+          <svg class="badge__ring" viewBox="0 0 300 300">
+            <defs>
+              <path id="ring-path" d="M150,150 m-118,0 a118,118 0 1,1 236,0 a118,118 0 1,1 -236,0"/>
+            </defs>
+            <text><textPath href="#ring-path" textLength="735" data-i18n="about.ring">Hi! I'm a UX/UI Designer · Based in Costa Rica ·</textPath></text>
+          </svg>
+          <span class="badge__mark">B<span>.</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUOTE -->
+    <section class="quote" aria-label="Philosophy">
+      <div class="frame quote__inner">
+        <blockquote>
+          <p class="quote__text" data-words data-i18n="quote.text">“I will create something meaningful and bring out its identity in the most distinctive way.”</p>
+          <footer class="quote__by">
+            <strong>Samuel O.</strong>
+            <span data-i18n="quote.role">Founder of baycode (UX/UI Designer)</span>
+          </footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services" id="services" aria-labelledby="services-title" tabindex="-1">
+      <div class="frame services__head" data-reveal>
+        <div>
+          <p class="eyebrow" data-i18n="services.eyebrow">UX/UI design services</p>
+          <h2 id="services-title" data-i18n="services.title">Crafted with intent</h2>
+        </div>
+        <p data-i18n="services.text">A one-person studio that moves from research to launch. Strategy, interface and code under the same roof.</p>
+      </div>
+      <ul class="flow" role="list">
+        <li class="flow__item"><span class="flow__label" data-i18n="svc.1">UX/UI Design</span><div class="flow__marquee" aria-hidden="true"><div class="flow__track"></div></div></li>
+        <li class="flow__item"><span class="flow__label" data-i18n="svc.2">Website Design</span><div class="flow__marquee" aria-hidden="true"><div class="flow__track"></div></div></li>
+        <li class="flow__item"><span class="flow__label" data-i18n="svc.3">Web Applications</span><div class="flow__marquee" aria-hidden="true"><div class="flow__track"></div></div></li>
+        <li class="flow__item"><span class="flow__label" data-i18n="svc.4">Brand Identity</span><div class="flow__marquee" aria-hidden="true"><div class="flow__track"></div></div></li>
+        <li class="flow__item"><span class="flow__label" data-i18n="svc.5">Front-end Development</span><div class="flow__marquee" aria-hidden="true"><div class="flow__track"></div></div></li>
+      </ul>
+    </section>
+
+    <!-- WORK (horizontal gallery) -->
+    <section class="work" id="work" aria-labelledby="work-title" tabindex="-1">
+      <div class="work__sticky">
+        <div class="frame work__head">
+          <div>
+            <p class="eyebrow" data-i18n="work.eyebrow">My projects / showcase</p>
+            <h2 id="work-title" data-i18n="work.title">Selected work</h2>
+          </div>
+          <a class="work__all pill pill--glass" href="#contact"><span data-i18n="work.start">Start a project</span></a>
+        </div>
+        <div class="frame work__progress" aria-hidden="true">
+          <span class="work__count">01</span>
+          <span class="work__bar"><span></span></span>
+          <span>03</span>
+        </div>
+        <div class="work__viewport">
+          <ul class="work__track" role="list">
+            <li class="card">
+              <a href="https://jr-embalajes.vercel.app/" target="_blank" rel="noopener">
+                <video class="card__video" src="assets/jr-embalajes.mp4" poster="assets/jr-embalajes-poster.jpg" width="1024" height="688" muted loop playsinline preload="none" aria-hidden="true"></video>
+                <div class="card__info">
+                  <span class="card__type" data-i18n="work.jr.type">Website design · 3D</span>
+                  <h3>JR Embalajes</h3>
+                </div>
+                <span class="card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+              </a>
+            </li>
+            <li class="card">
+              <a href="https://haki-tracker.vercel.app/" target="_blank" rel="noopener">
+                <video class="card__video" src="assets/haki-tracker.mp4" poster="assets/haki-tracker-poster.jpg" width="1024" height="688" muted loop playsinline preload="none" aria-hidden="true"></video>
+                <div class="card__info">
+                  <span class="card__type" data-i18n="work.haki.type">Web application</span>
+                  <h3>Haki Tracker</h3>
+                </div>
+                <span class="card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+              </a>
+            </li>
+            <li class="card card--cta">
+              <a href="#contact">
+                <div class="card__info">
+                  <span class="card__type" data-i18n="work.next.type">Your project</span>
+                  <h3 data-i18n="work.next.title">Could be next</h3>
+                </div>
+                <span class="card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process section" id="process" aria-labelledby="process-title" tabindex="-1">
+      <div class="frame">
+        <div class="process__head" data-reveal>
+          <p class="eyebrow" data-i18n="process.eyebrow">How I work</p>
+          <h2 id="process-title" data-i18n="process.title">From idea to launch</h2>
+        </div>
+        <div class="orbit" aria-hidden="true">
+          <span class="orbit__line"></span>
+          <span class="orbit__circle" style="--i:0;--s:11%" data-i18n="step.1">Discover</span>
+          <span class="orbit__circle" style="--i:1;--s:16%" data-i18n="step.2">Define</span>
+          <span class="orbit__circle" style="--i:2;--s:22%" data-i18n="step.3">Design</span>
+          <span class="orbit__circle" style="--i:3;--s:27%" data-i18n="step.4">Develop</span>
+          <span class="orbit__circle" style="--i:4;--s:32%" data-i18n="step.5">Launch</span>
+        </div>
+        <ol class="steps" role="list">
+          <li data-reveal><span>01</span><h3 data-i18n="step.1">Discover</h3><p data-i18n="step.1.text">Goals, audience and competitors. We agree on what success looks like.</p></li>
+          <li data-reveal><span>02</span><h3 data-i18n="step.2">Define</h3><p data-i18n="step.2.text">Sitemap, user flows and content structure before any pixel.</p></li>
+          <li data-reveal><span>03</span><h3 data-i18n="step.3">Design</h3><p data-i18n="step.3.text">Wireframes, visual direction and a clickable prototype.</p></li>
+          <li data-reveal><span>04</span><h3 data-i18n="step.4">Develop</h3><p data-i18n="step.4.text">Fast, responsive code that matches the design exactly.</p></li>
+          <li data-reveal><span>05</span><h3 data-i18n="step.5">Launch</h3><p data-i18n="step.5.text">Testing, SEO basics, go-live and support after launch.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- CONTACT CTA -->
+    <section class="cta section" id="contact" aria-labelledby="cta-title" tabindex="-1">
+      <div class="frame cta__inner">
+        <h2 id="cta-title" data-reveal><span data-i18n="cta.title">Let's create something</span>
+          <span class="scribble"><span data-i18n="cta.word">exceptional</span><svg viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true"><path d="M3 15 C 60 4, 120 22, 175 11 S 260 6, 297 13"/></svg></span>
+        </h2>
+        <p data-reveal data-i18n="cta.text">Available for freelance projects, product design collaboration and UX consulting.</p>
+        <div class="cta__actions" data-reveal>
+          <a class="pill pill--glass-dark" href="https://wa.me/50686259751?text=Hola%2C%20Baycode.%20Me%20gustar%C3%ADa%20pedir%20una%20cotizaci%C3%B3n%20para%20un%20proyecto%20de%20dise%C3%B1o." target="_blank" rel="noopener"><span data-i18n="cta.quote">Request a quote</span></a>
+          <a class="pill pill--glass" href="https://wa.me/50686259751?text=Hola%2C%20Baycode.%20Me%20gustar%C3%ADa%20coordinar%20una%20llamada%20para%20conversar%20sobre%20mi%20proyecto.%20%C2%BFQu%C3%A9%20horarios%20ten%C3%A9s%20disponibles%3F" target="_blank" rel="noopener"><span data-i18n="cta.call">Schedule a call</span></a>
+        </div>
+        <p class="cta__contact" data-reveal>
+          <a href="https://wa.me/50686259751" target="_blank" rel="noopener">+506 8625 9751</a>
+          <span class="cta__sep" aria-hidden="true">|</span>
+          <a href="mailto:baymaxcodingcodex@gmail.com">baymaxcodingcodex@gmail.com</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="frame footer__inner">
+      <a class="wordmark" href="#top" aria-label="Baycode home">baycode<span>.</span></a>
+      <p>© <span data-year>2026</span> Baycode · Costa Rica</p>
+      <a class="footer__top" href="#top"><span data-i18n="footer.top">Back to top</span> <span aria-hidden="true">↑</span></a>
+    </div>
+  </footer>
+</body>
+</html>
