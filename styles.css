@@ -494,6 +494,32 @@ main:focus, section:focus { outline: none; }
 .footer__inner { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
 .footer p { color: var(--grey-2); }
 
+
+/* ---------- Work: 3D reel (work3d.js adds .is-3d when WebGL is available) ---------- */
+.work__stage3d { display: none; }
+.work.is-3d { padding-top: 0; }
+.work.is-3d .work__sticky {
+  position: sticky; top: 0; height: 100svh; overflow: hidden;
+  display: flex; flex-direction: column;
+  padding: 5.5rem 0 1rem;
+}
+.work.is-3d .work__viewport { display: none; }
+.work.is-3d .work__stage3d { display: block; position: relative; flex: 1; min-height: 0; }
+.work__canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+  touch-action: pan-y; /* vertical swipes keep scrolling the page */
+  cursor: grab; outline: none;
+}
+.work__canvas.is-dragging { cursor: grabbing; }
+.work__canvas:focus-visible { box-shadow: inset 0 0 0 2px var(--ink); border-radius: 1rem; }
+.work__ui {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 0.55rem;
+  pointer-events: none;
+}
+.work__visit { pointer-events: auto; }
+.work__hint { color: var(--grey-3); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; }
+
 /* ---------- Process steps: "passage" deck (turned on by site.js; off with reduced motion) ----------
    The Process card is in front. The five step cards sit behind it, same size, hidden.
    With scroll progress --p each card slides down out from behind the one in front,

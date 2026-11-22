@@ -17,6 +17,7 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
   <script src="site.js" defer></script>
+  <script type="module" src="work3d.js"></script>
 </head>
 <body id="top">
   <div class="loader" aria-hidden="true">
@@ -177,6 +178,14 @@
               </a>
             </li>
           </ul>
+        </div>
+        <!-- 3D reel (work3d.js). Hidden unless WebGL works; the list above is the fallback. -->
+        <div class="work__stage3d">
+          <canvas class="work__canvas" tabindex="0" role="img" aria-label="Selected work"></canvas>
+          <div class="work__ui">
+            <a class="work__visit pill pill--glass" href="#contact"><span>Let's talk</span></a>
+            <p class="work__hint" data-i18n="work.hint">Scroll or drag to explore</p>
+          </div>
         </div>
       </div>
     </section>

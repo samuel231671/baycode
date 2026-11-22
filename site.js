@@ -91,6 +91,7 @@ const ES = {
   "work.eyebrow": "Mis proyectos / portafolio",
   "work.title": "Trabajo seleccionado",
   "work.start": "Empecemos un proyecto",
+  "work.hint": "Desliza o arrastra para explorar",
   "work.jr.alt": "Página de inicio de JR Embalajes con la foto de una bodega y un botón para cotizar",
   "work.jr.type": "Diseño web · 3D",
   "work.haki.alt": "Panel de Haki Tracker con el plan del día y el progreso semanal",
@@ -257,6 +258,10 @@ const desktop = window.matchMedia("(min-width: 48.01rem)");
 let distance = 0;
 
 function setupGallery() {
+  // The 3D reel (work3d.js) owns the section once it is running
+  if (work.classList.contains("is-3d")) {
+    work.classList.remove("is-pinned"); track.style.transform = ""; distance = 0; return;
+  }
   const pin = desktop.matches && !reduceMotion;
   work.classList.toggle("is-pinned", pin);
   track.style.transform = "";
@@ -390,6 +395,7 @@ window.addEventListener("scroll", () => {
 }, { passive: true });
 
 window.addEventListener("resize", () => { setupGallery(); onScroll(); });
+window.baycodeResetGallery = () => { setupGallery(); onScroll(); };
 window.addEventListener("load", () => { setupGallery(); onScroll(); });
 setupGallery();
 onScroll();
