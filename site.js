@@ -96,7 +96,7 @@ const ES = {
   "work.jr.type": "Diseño web · 3D",
   "work.haki.alt": "Panel de Haki Tracker con el plan del día y el progreso semanal",
   "work.haki.type": "Aplicación web",
-  "work.voley.type": "Aplicación web · 3D",
+  "work.cancha.type": "Aplicación web · 3D",
   "work.next.type": "Tu proyecto",
   "work.next.title": "Podría ser el siguiente",
   "process.eyebrow": "Cómo trabajo",
